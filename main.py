@@ -1,15 +1,20 @@
 import sys
-
+import time
+import asyncio
 '''if __name__!="__main__":
     raise RuntimeError("This script should be run directly and not imported as a module.")'''
 
-# make sure console argument are valid
-if len(sys.argv)!=2:
-    print("One Command Line Arguments Expected: \"main.py <filename>\"")
-    sys.exit()
+import settings
+import play
+
+print("Counting down")
+for i in range(5):
+    print(i+1)
+    time.sleep(1)
+result = asyncio.run(play.play(settings.settings))
+if result == 1:
+    print("\nAn error encountered, program stoped.")
+elif result == 2:
+    print("\nProgram exited.")
 else:
-    import play
-    if play.play(sys.argv[1]):
-        print("\nAn error encountered, program stoped.")
-    else:
-        print("\nSound sequence finished, program exited.\n")
+    print("\nSound sequence finished, program exited.\n")
