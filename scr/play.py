@@ -2,16 +2,16 @@ import time
 import asyncio
 import pynput
 
-import keyboard
+import keyboardUtil
 
 from mido import MidiFile
 
 async def play(settings):
     #pynput setup
     keyboardController = pynput.keyboard.Controller()
-    esc_listener=pynput.keyboard.Listener(on_press=keyboard.key_check("esc"))
+    esc_listener=pynput.keyboard.Listener(on_press=keyboardUtil.key_check("esc"))
     esc_listener.start()
-    p_listener=pynput.keyboard.Listener(on_press=keyboard.key_check("f4"))
+    p_listener=pynput.keyboard.Listener(on_press=keyboardUtil.key_check("f4"))
     p_listener.start()
 
     # file load
@@ -42,11 +42,11 @@ async def play(settings):
     while esc_listener.running:
 
         # react to pauses
-        pauseReaction = keyboard.encounterPause(p_listener, esc_listener)
+        pauseReaction = keyboardUtil.encounterPause(p_listener, esc_listener)
         if pauseReaction == 2:
             return 2
         elif pauseReaction == 1:
-            p_listener=pynput.keyboard.Listener(on_press=keyboard.key_check("f4"))
+            p_listener=pynput.keyboard.Listener(on_press=keyboardUtil.key_check("f4"))
             p_listener.start()
             lastUpdateTime = time.time()
             deltaTime = time.time() - lastUpdateTime
@@ -62,7 +62,7 @@ async def play(settings):
             notesPlayed.update(newNotes)
         if not active: return
         errorPlaying = await asyncio.gather(
-            *(keyboard.playNotes(note, keyboardController, settings["shift"]) for note in notesPlayed)
+            *(keyboardUtil.playNotes(note, keyboardController, settings["shift"]) for note in notesPlayed)
         )
         if 1 in errorPlaying: return 1
         deltaTime = time.time() - lastUpdateTime
