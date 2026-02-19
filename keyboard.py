@@ -1,5 +1,3 @@
-import time
-
 import pynput
 keymap = [
     {'c': 'z', 'd': 'x', 'e': 'c', 'f': 'v', 'g': 'b', 'a': 'n', 'b': 'm'},
