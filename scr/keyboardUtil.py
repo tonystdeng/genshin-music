@@ -47,7 +47,7 @@ def key_check(keyName):
         except AttributeError: 
             return
     return key_checker
-# i jsut copied from hackclub cheat >>>>>>>>>>>>>>
+# i jsut copied from hackclub cheat lol >>>>>>>>>>>>>>
 
 def encounterPause(p_listener, esc_listener):
     if not p_listener.running:

@@ -6,8 +6,8 @@ import asyncio
 import settings
 import play
 
-print("Counting down")
-for i in range(5):
+print("Counting down for", settings.settings["countdown"])
+for i in range(settings.settings["countdown"]):
     print(i+1)
     time.sleep(1)
 result = asyncio.run(play.play(settings.settings))

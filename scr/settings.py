@@ -1,6 +1,7 @@
 settings = {
-    "filename": "../testFiles/int.mid",
-    "track": 0,
-    "shift": -1,
-    "endSect": -1
+    "filename":     "../testFiles/summer.mid",
+    "track":        0,
+    "shift":        -1,
+    "endSect":      -1,
+    "countdown":    0,
 }
