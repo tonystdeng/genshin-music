@@ -6,10 +6,13 @@ import asyncio
 import settings
 import play
 
+
 print("Counting down for", settings.settings["countdown"])
 for i in range(settings.settings["countdown"]):
     print(i+1)
     time.sleep(1)
+
+
 result = asyncio.run(play.play(settings.settings))
 if result == 1:
     print("\nAn error encountered, program stoped.")
