@@ -62,7 +62,7 @@ async def play(settings):
             notesPlayed.update(newNotes)
         if not active: return
         errorPlaying = await asyncio.gather(
-            *(keyboardUtil.playNotes(note, keyboardController, settings["shift"]) for note in notesPlayed)
+            *(keyboardUtil.playNotes(note, keyboardController, settings["shift"], settings["halfNoteAdjustDown"]) for note in notesPlayed)
         )
         if 1 in errorPlaying: return 1
         deltaTime = time.time() - lastUpdateTime
